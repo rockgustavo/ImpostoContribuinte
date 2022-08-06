@@ -1,4 +1,4 @@
-# Projeto Imposto Contribuinte com a seguinte regra de negócio:
+# Projeto Imposto Contribuinte
 Os dados são de pessoa física e pessoa jurídica:
 
 ### Modelagem de dados - Diagrama de Classes
