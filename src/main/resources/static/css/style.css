@@ -1,6 +1,10 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap')
 	;
+	
+@import
+	url('https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css')
+	;
 
 * {
 	font-family: 'Roboto', sans-serif;
@@ -16,5 +20,18 @@ form {
 }
 
 #cabecalho-img {
-	max-width: 30%;
+	max-width: 20%;
 }
+
+.container {
+	width: 100%;
+	padding-top: 20px;
+}
+
+#passwordHelpBlock {
+	font-size: 18px;
+	text-align: center;
+}
+
+
+

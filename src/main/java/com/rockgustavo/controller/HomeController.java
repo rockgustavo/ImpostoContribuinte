@@ -26,11 +26,58 @@ public class HomeController {
 		return mv;
 	}
 
-	@PostMapping("/logar")
-	public ModelAndView create(String name, String password) {
-		System.out.println("LOGIN: " + name + " - SENHA: " + passwordEncoder.encode(password));
+	@GetMapping("/pessoafisica")
+	public ModelAndView pessoafisica() {
+		mv.setViewName("home/pf");
+		return mv;
+	}
 
+	@GetMapping("/pessoajuridica")
+	public ModelAndView pessoajuridica() {
+		mv.setViewName("home/pj");
+		return mv;
+	}
+
+	@GetMapping("/voltar")
+	public ModelAndView voltar() {
+		mv.setViewName("home/home");
+		return mv;
+	}
+	
+	@GetMapping("/sair")
+	public ModelAndView sair() {
 		mv.setViewName("home/index");
+		return mv;
+	}
+
+	@PostMapping("/logar")
+	public ModelAndView create(String login, String password) {
+		System.out.println("LOGIN: " + login + " - SENHA: " + passwordEncoder.encode(password));
+		boolean autSenha = new BCryptPasswordEncoder().matches("123", passwordEncoder.encode(password));
+		if ("admin".equals(login) && autSenha) {
+			mv.setViewName("home/home");
+		} else {
+			mv.setViewName("home/index");
+		}
+
+		return mv;
+	}
+
+	@PostMapping("/salvarpf")
+	public ModelAndView salvarpf(String nome, Double rendaAnual, Double gastosComSaude) {
+		System.out
+				.println("NOME: " + nome + " - RENDA ANUAL: " + rendaAnual + " - GASTOS COM SAUDE: " + gastosComSaude);
+
+		mv.setViewName("home/home");
+		return mv;
+	}
+
+	@PostMapping("/salvarpj")
+	public ModelAndView salvarpj(String nome, Double rendaAnual, Integer numFuncionarios) {
+		System.out.println(
+				"NOME: " + nome + " - RENDA ANUAL: " + rendaAnual + " - Nº de funcionários: " + numFuncionarios);
+
+		mv.setViewName("home/home");
 		return mv;
 	}
 
