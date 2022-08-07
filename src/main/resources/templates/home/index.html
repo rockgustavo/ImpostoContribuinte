@@ -5,26 +5,32 @@
 <title>Autenticação de usuário</title>
 <link href="/css/style.css" rel="stylesheet" />
 
-	<!-- Bootstrap core CSS -->
-	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap core CSS -->
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<figure class="fig">
 		<img id="cabecalho-img" src="/img/springboot.png" alt="SpringBoot">
 	</figure>
 
-	<form method="POST" action="/logar">
-		<div class="mb-3">
-			<label class="form-label">Login</label> <input name="login"
-				placeholder="Digite seu login" type="text" class="form-control">
-		</div>
-		<div class="mb-3">
-			<label class="form-label">Senha</label> <input name="password"
-				placeholder="Digite sua senha" type="password" class="form-control" id="exampleInputPassword1">
-		</div>
-		<div id="passwordHelpBlock" class="form-text">Utilize o login: <b>admin</b> e senha: <b>123</b></div>
-		<button type="submit" class="btn btn-primary">Logar</button>
-	</form>
+	<div id="login">
+		<form method="POST" action="/logar">
+			<div class="mb-3">
+				<label class="form-label">Login</label> <input name="login"
+					placeholder="Digite seu login" type="text" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Senha</label> <input name="password"
+					placeholder="Digite sua senha" type="password" class="form-control"
+					id="exampleInputPassword1">
+			</div>
+			<div id="passwordHelpBlock" class="form-text">
+				Utilize o login: <b>admin</b> e senha: <b>123</b>
+			</div>
+			<button type="submit" class="btn btn-primary">Logar</button>
+		</form>
+	</div>
 </body>
 </html>

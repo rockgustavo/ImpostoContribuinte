@@ -1,21 +1,17 @@
 package com.rockgustavo.controller;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rockgustavo.model.Juridica;
 import com.rockgustavo.service.PessoaJuridicaService;
@@ -23,15 +19,17 @@ import com.rockgustavo.service.PessoaJuridicaService;
 @RestController
 @RequestMapping(value = "/pj")
 public class PessoaJuridicaController {
+	ModelAndView mv = new ModelAndView();
+	
 	@Autowired
 	private PessoaJuridicaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Juridica>> findAll() {
-		List<Juridica> list = service.findAll();
-
-		return ResponseEntity.ok().body(list);
-
+	public ModelAndView findAll() {
+		List<Juridica> listPessoas = service.findAll();
+		mv.addObject("listPessoas", listPessoas);
+		mv.setViewName("home/pj");
+		return mv;
 	}
 	
 	@GetMapping(value = "/{id}")
@@ -57,27 +55,25 @@ public class PessoaJuridicaController {
 
 	}
 	
-	@PostMapping
-	public ResponseEntity<Juridica> insert(@RequestBody String nome, @RequestBody Double rendaAnual, @RequestBody Integer numFuncionarios) {
-		System.out.println(
-				"NOME: " + nome + " - RENDA ANUAL: " + rendaAnual + " - Nº de funcionários: " + numFuncionarios);
-
-		Juridica obj = new Juridica(numFuncionarios, nome, rendaAnual, numFuncionarios);
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+	@PostMapping("/inserirpj")
+	public ModelAndView insert(Juridica juridica) {
+		service.insert(juridica);
+		mv.setViewName("home/pj");
+		return mv;
 	}
 	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Juridica> update(@PathVariable Integer id, @RequestBody Juridica obj) {
-		obj = service.update(id, obj);
-		return ResponseEntity.ok().body(obj);
+	@PostMapping("/atualizarpj")
+	public ModelAndView update(Integer id, Juridica juridica) {
+		service.update(id, juridica);
+		mv.setViewName("home/pj");
+		return mv;
 	}
 	
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Juridica> delete(@PathVariable Integer id) {
+	@PostMapping("/deletarpj")
+	public ModelAndView delete(Integer id) {
 		service.delete(id);
-		return ResponseEntity.noContent().build();
+		mv.setViewName("home/pj");
+		return mv;
 	}
 
 }
