@@ -23,7 +23,6 @@ import com.rockgustavo.service.PessoaJuridicaService;
 @RestController
 @RequestMapping(value = "/pj")
 public class PessoaJuridicaController {
-
 	@Autowired
 	private PessoaJuridicaService service;
 
@@ -59,7 +58,11 @@ public class PessoaJuridicaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Juridica> insert(@RequestBody Juridica obj) {
+	public ResponseEntity<Juridica> insert(@RequestBody String nome, @RequestBody Double rendaAnual, @RequestBody Integer numFuncionarios) {
+		System.out.println(
+				"NOME: " + nome + " - RENDA ANUAL: " + rendaAnual + " - Nº de funcionários: " + numFuncionarios);
+
+		Juridica obj = new Juridica(numFuncionarios, nome, rendaAnual, numFuncionarios);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);

@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rockgustavo.model.Juridica;
+import com.rockgustavo.service.PessoaJuridicaService;
+
 @RestController
+@RequestMapping(value = "/")
 public class HomeController {
 	ModelAndView mv = new ModelAndView();
 
@@ -60,24 +65,6 @@ public class HomeController {
 			mv.setViewName("home/index");
 		}
 
-		return mv;
-	}
-
-	@PostMapping("/salvarpf")
-	public ModelAndView salvarpf(String nome, Double rendaAnual, Double gastosComSaude) {
-		System.out
-				.println("NOME: " + nome + " - RENDA ANUAL: " + rendaAnual + " - GASTOS COM SAUDE: " + gastosComSaude);
-
-		mv.setViewName("home/home");
-		return mv;
-	}
-
-	@PostMapping("/salvarpj")
-	public ModelAndView salvarpj(String nome, Double rendaAnual, Integer numFuncionarios) {
-		System.out.println(
-				"NOME: " + nome + " - RENDA ANUAL: " + rendaAnual + " - Nº de funcionários: " + numFuncionarios);
-
-		mv.setViewName("home/home");
 		return mv;
 	}
 
