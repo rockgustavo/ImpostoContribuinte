@@ -39,6 +39,12 @@ public class HomeController {
 		mv.setViewName("home/pj");
 		return mv;
 	}
+	
+	@GetMapping("/layout")
+	public ModelAndView layout() {
+		mv.setViewName("home/layout");
+		return mv;
+	}
 
 	@GetMapping("/voltar")
 	public ModelAndView voltar() {

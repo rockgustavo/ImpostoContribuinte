@@ -16,7 +16,12 @@ form {
 }
 
 #login {
-	margin: 10px 300px;
+	margin: 10px 200px;
+}
+
+#passwordHelpBlock {
+	font-size: 18px;
+	text-align: center;
 }
 
 .fig {
@@ -30,11 +35,6 @@ form {
 .container {
 	width: 100%;
 	padding-top: 20px;
-}
-
-#passwordHelpBlock {
-	font-size: 18px;
-	text-align: center;
 }
 
 #salvar {
