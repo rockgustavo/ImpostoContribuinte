@@ -8,34 +8,36 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	
+<link rel="icon" href="/img/favicon.png" />
 
-<link rel="icon" href="/image/favicon.png" />
 <!-- Custom styles for this template -->
 <link href="/css/style.css" rel="stylesheet" />
+
 <!-- Bootstrap core CSS -->
 <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
 	rel="stylesheet" />
 </head>
 <body>
-	<header>
-		<div>header</div>
+	<header th:replace="fragments/header :: cabecalho">
+		<div>Layout header</div>
 	</header>
 
-	<div>
-		<aside>
-			<nav>
-				<span>menu</span>
+	<div class="layout-main">
+		<aside id="sidebar">
+			<nav th:replace="fragments/sidebar :: nav-sidebar">
+				<span>Layout aside</span>
 			</nav>
 		</aside>
 
-		<section layout:fragment="content">
-			<p>Page original</p>
+		<section id="content" layout:fragment="content">
+			<p>Layout section</p>
 		</section>
 	</div>
 
-	<footer th:replace="/fragments/footer :: rodape">
-		<div>footer</div>
+	<footer th:replace="fragments/footer :: rodape">
+		<div>Layout footer</div>
 	</footer>
 
 

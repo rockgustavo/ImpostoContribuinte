@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.rockgustavo.model.Fisica;
@@ -26,6 +27,27 @@ public class PessoaFisicaController {
 
 	@Autowired
 	private PessoaFisicaService service;
+	
+	@GetMapping("/main")
+	public ModelAndView layout() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("departamento/main2");
+		return mv;
+	}
+	
+	@GetMapping("/cad")
+	public ModelAndView pessoafisica() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/departamento/cadastro");
+		return mv;
+	}
+	
+	@GetMapping("/listar")
+	public ModelAndView pessoafisicaListar() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/departamento/lista");
+		return mv;
+	}
 
 	@GetMapping
 	public ResponseEntity<List<Fisica>> findAll() {

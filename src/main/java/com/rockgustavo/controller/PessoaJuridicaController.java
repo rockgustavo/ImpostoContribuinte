@@ -19,16 +19,16 @@ import com.rockgustavo.service.PessoaJuridicaService;
 @RestController
 @RequestMapping(value = "/pj")
 public class PessoaJuridicaController {
-	ModelAndView mv = new ModelAndView();
 	
 	@Autowired
 	private PessoaJuridicaService service;
 
 	@GetMapping
 	public ModelAndView findAll() {
+		ModelAndView mv = new ModelAndView();
 		List<Juridica> listPessoas = service.findAll();
 		mv.addObject("listPessoas", listPessoas);
-		mv.setViewName("home/pj");
+		mv.setViewName("pj");
 		return mv;
 	}
 	
@@ -57,22 +57,25 @@ public class PessoaJuridicaController {
 	
 	@PostMapping("/inserirpj")
 	public ModelAndView insert(Juridica juridica) {
+		ModelAndView mv = new ModelAndView();
 		service.insert(juridica);
-		mv.setViewName("home/pj");
+		mv.setViewName("pj");
 		return mv;
 	}
 	
 	@PostMapping("/atualizarpj")
 	public ModelAndView update(Integer id, Juridica juridica) {
+		ModelAndView mv = new ModelAndView();
 		service.update(id, juridica);
-		mv.setViewName("home/pj");
+		mv.setViewName("pj");
 		return mv;
 	}
 	
 	@PostMapping("/deletarpj")
 	public ModelAndView delete(Integer id) {
+		ModelAndView mv = new ModelAndView();
 		service.delete(id);
-		mv.setViewName("home/pj");
+		mv.setViewName("pj");
 		return mv;
 	}
 
