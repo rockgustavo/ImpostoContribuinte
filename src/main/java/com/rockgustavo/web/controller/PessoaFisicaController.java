@@ -35,23 +35,57 @@ public class PessoaFisicaController {
 		return mv;
 	}
 	
+	@PostMapping("/salvar")
+	public ModelAndView salvar(Fisica fisica) {
+		System.out.println(fisica.getNome());
+		//	fazer o salvar
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pessoaFisica/cadastro");
+		return mv;
+	}
+	
 	@GetMapping("/listar")
 	public ModelAndView pessoafisicaListar() {
 		ModelAndView mv = new ModelAndView();
 		List<Fisica> list = service.findAll();
-		System.out.println(list.get(0).getImposto());
 		mv.addObject("listaPf", list);
 		mv.setViewName("pessoaFisica/lista");
 		return mv;
 	}
 	
-	@PostMapping("/salvar")
-	public ModelAndView salvar(Fisica fisica) {
-		System.out.println(fisica.getNome());
+	@GetMapping(value = "/editar/{id}")
+	public ModelAndView preEditar(@PathVariable Integer id) {
 		ModelAndView mv = new ModelAndView();
+		Fisica pessoa = service.findById(id);
+		mv.addObject(pessoa);
 		mv.setViewName("pessoaFisica/cadastro");
 		return mv;
 	}
+	
+	@PostMapping(value = "/editar")
+	public ModelAndView editar(Fisica obj) {
+		ModelAndView mv = new ModelAndView();
+		service.update(obj);
+		
+		List<Fisica> list = service.findAll();
+		mv.addObject("listaPf", list);
+		mv.setViewName("pessoaFisica/lista");
+		return mv;
+	}
+	
+	@GetMapping(value = "/delete/{id}")
+	public ModelAndView deletar(@PathVariable Integer id) {
+		ModelAndView mv = new ModelAndView();
+		service.delete(id);
+
+		List<Fisica> list = service.findAll();
+		mv.addObject("listaPf", list);
+		mv.setViewName("pessoaFisica/lista");
+		return mv;
+	}
+	
+	
+	
 	
 	
 

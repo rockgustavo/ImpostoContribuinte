@@ -31,6 +31,11 @@ public class PessoaFisicaService {
 
 	}
 	
+	public Fisica update(Fisica obj) {
+		return pf.save(obj);
+
+	}
+	
 	public void delete(Integer id) {
 		pf.deleteById(id);
 	}
