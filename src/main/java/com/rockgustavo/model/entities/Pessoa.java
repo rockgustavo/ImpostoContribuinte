@@ -1,4 +1,4 @@
-package com.rockgustavo.model;
+package com.rockgustavo.model.entities;
 
 import java.io.Serializable;
 
@@ -52,6 +52,10 @@ public abstract class Pessoa implements Serializable {
 
 	public void setRendaAnual(Double rendaAnual) {
 		this.rendaAnual = rendaAnual;
+	}
+	
+	public Double getImposto() {
+		return calculoImposto();
 	}
 
 	@Override

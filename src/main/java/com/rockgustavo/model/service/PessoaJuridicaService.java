@@ -1,4 +1,4 @@
-package com.rockgustavo.service;
+package com.rockgustavo.model.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rockgustavo.model.Juridica;
-import com.rockgustavo.repository.PessoaJuridicaRepository;
+import com.rockgustavo.model.entities.Juridica;
+import com.rockgustavo.model.repository.PessoaJuridicaRepository;
 
 @Service
 public class PessoaJuridicaService {

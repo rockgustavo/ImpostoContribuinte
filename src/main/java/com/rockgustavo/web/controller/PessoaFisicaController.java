@@ -1,4 +1,4 @@
-package com.rockgustavo.controller;
+package com.rockgustavo.web.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.rockgustavo.model.Fisica;
-import com.rockgustavo.service.PessoaFisicaService;
+import com.rockgustavo.model.entities.Fisica;
+import com.rockgustavo.model.service.PessoaFisicaService;
 
 @RestController
 @RequestMapping(value = "/pf")
@@ -38,6 +38,9 @@ public class PessoaFisicaController {
 	@GetMapping("/listar")
 	public ModelAndView pessoafisicaListar() {
 		ModelAndView mv = new ModelAndView();
+		List<Fisica> list = service.findAll();
+		System.out.println(list.get(0).getImposto());
+		mv.addObject("listaPf", list);
 		mv.setViewName("pessoaFisica/lista");
 		return mv;
 	}

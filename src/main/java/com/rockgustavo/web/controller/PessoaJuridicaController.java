@@ -1,4 +1,4 @@
-package com.rockgustavo.controller;
+package com.rockgustavo.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rockgustavo.model.Juridica;
-import com.rockgustavo.service.PessoaJuridicaService;
+import com.rockgustavo.model.entities.Juridica;
+import com.rockgustavo.model.service.PessoaJuridicaService;
 
 @RestController
 @RequestMapping(value = "/pj")

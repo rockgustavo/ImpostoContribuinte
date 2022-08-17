@@ -1,4 +1,4 @@
-package com.rockgustavo.model;
+package com.rockgustavo.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -35,4 +35,5 @@ public class Fisica extends Pessoa {
 	public void setGastosComSaude(Double gastosComSaude) {
 		this.gastosComSaude = gastosComSaude;
 	}
+	
 }

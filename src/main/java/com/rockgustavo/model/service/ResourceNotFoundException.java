@@ -1,4 +1,4 @@
-package com.rockgustavo.service;
+package com.rockgustavo.model.service;
 
 public class ResourceNotFoundException extends RuntimeException{
 

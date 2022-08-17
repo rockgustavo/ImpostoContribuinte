@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html 	xmlns:th="http://www.thymeleaf.org"
-		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-		layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
 </head>
@@ -13,30 +13,41 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Cadastrar Cargos</span></li>
+						<span>Cadastrar Pessoa Física</span></li>
 				</ul>
 			</div>
-			<a class="btn btn-primary btn-md" href="/cargos/listar" role="button">
+			<a class="btn btn-primary btn-md" href="/pf/listar" role="button">
 				<span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-				<span>Listar Cargos</span>
+				<span>Listar PF Cadastradas</span>
 			</a>
 		</nav>
 
 		<div class="container" id="cadastro">
-
-			<div ></div>
-
-			<form method="POST" th:action="@{/pf/salvar}" th:object="${fisica}">
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="nome">Nome Completo</label> 
-						
-						<input type="text" th:field="*{nome}"
-							class="form-control" id="nome" placeholder="Nome Completo"
-							autofocus="autofocus" />
-					</div>
+			<form method="POST" class="row g-3 needs-validation" th:action="@{/pf/salvar}" th:object="${fisica}">
+				<div class="col-md-12">
+					<label class="form-label">Nome Completo</label> 
+					<input type="text"
+						th:field="*{nome}" class="form-control"
+						id="validationDefault01" placeholder="Digite o nome completo"
+						autofocus="autofocus" required/>
 				</div>
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				<div class="col-md-6">
+					<label class="form-label">Renda Anual</label> 
+					<input type="text"
+						th:field="*{rendaAnual}" class="form-control"
+						id="validationDefault02" placeholder="Digite a renda anual"
+						autofocus="autofocus" required/>
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Gasto Anual com Saúde</label> 
+					<input type="text"
+						th:field="*{gastosComSaude}" class="form-control"
+						id="validationDefault03" placeholder="Gasto anual com saúde"
+						autofocus="autofocus" required/>
+				</div>
+				<div class="d-grid gap-3 mx-auto">
+					<button class="btn btn-primary" type="submit">Salvar</button>
+				</div>
 			</form>
 		</div>
 	</section>
