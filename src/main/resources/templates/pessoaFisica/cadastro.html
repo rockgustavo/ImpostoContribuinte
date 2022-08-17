@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout}">
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
 </head>
@@ -25,23 +26,16 @@
 
 			<div ></div>
 
-			<form 
-				method="POST">
+			<form method="POST" th:action="@{/pf/salvar}" th:object="${fisica}">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Nome do Cargo</label> <input type="text"
-							class="form-control" id="nome" placeholder="Nome Cargo"
+						<label for="nome">Nome Completo</label> 
+						
+						<input type="text" th:field="*{nome}"
+							class="form-control" id="nome" placeholder="Nome Completo"
 							autofocus="autofocus" />
 					</div>
-					<div class="form-group col-md-4">
-						<label for="departamento">Departamento</label> 
-						<select id="departamento" class="form-control">
-							<option value="">Selecione</option>
-							<option >Administração</option>
-						</select>
-					</div>
 				</div>
-				<input type="hidden" id="id" name="id" value="" />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 			</form>
 		</div>

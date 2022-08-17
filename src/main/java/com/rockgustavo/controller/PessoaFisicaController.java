@@ -28,26 +28,29 @@ public class PessoaFisicaController {
 	@Autowired
 	private PessoaFisicaService service;
 	
-	@GetMapping("/main")
-	public ModelAndView layout() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("departamento/main2");
-		return mv;
-	}
-	
 	@GetMapping("/cad")
-	public ModelAndView pessoafisica() {
+	public ModelAndView pessoafisica(Fisica fisica) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/departamento/cadastro");
+		mv.setViewName("pessoaFisica/cadastro");
 		return mv;
 	}
 	
 	@GetMapping("/listar")
 	public ModelAndView pessoafisicaListar() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/departamento/lista");
+		mv.setViewName("pessoaFisica/lista");
 		return mv;
 	}
+	
+	@PostMapping("/salvar")
+	public ModelAndView salvar(Fisica fisica) {
+		System.out.println(fisica.getNome());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pessoaFisica/cadastro");
+		return mv;
+	}
+	
+	
 
 	@GetMapping
 	public ResponseEntity<List<Fisica>> findAll() {
