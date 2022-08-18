@@ -23,15 +23,28 @@
 		</nav>
 
 		<div class="container" id="cadastro">
+		
+			<div th:replace="fragments/alert">
+			</div>
+		
 			<form method="POST" class="row g-3 needs-validation" 
 				th:action="${fisica.id == null} ? @{/pf/salvar} : @{/pf/editar}" 
 				th:object="${fisica}">
-				<div class="col-md-12">
+				<div class="col-md-6">
 					<label class="form-label">Nome Completo</label> 
 					<input type="text"
 						th:field="*{nome}" class="form-control"
 						id="validationDefault01" placeholder="Digite o nome completo"
 						autofocus="autofocus" required/>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="pessoas">Lista</label> 
+					<select
+						id="pessoas" class="form-select"> <!-- th:field="*{nome}"> --> 
+						<option value="">Selecione</option>
+						<option th:each="d : ${pessoasF}" 
+							th:value="${d.id}" th:text="${d.id + ' - ' + d.nome}">Administração</option>
+					</select>
 				</div>
 				<div class="col-md-6">
 					<label class="form-label">Renda Anual</label> 
