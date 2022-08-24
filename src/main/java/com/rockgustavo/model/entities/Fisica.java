@@ -20,11 +20,11 @@ public class Fisica extends Pessoa {
 	}
 
 	@Override
-	Double calculoImposto() {
+	String calculoImposto() {
 		if(getRendaAnual() < 20000.0) {
-			return (getRendaAnual() * 0.15) - (getGastosComSaude() * 0.5);
+			return String.valueOf((getRendaAnual() * 0.15) - (getGastosComSaude() * 0.5));
 		}else {
-			return (getRendaAnual() * 0.25) - (getGastosComSaude() * 0.5);
+			return String.valueOf((getRendaAnual() * 0.25) - (getGastosComSaude() * 0.5));
 		}
 	}
 	

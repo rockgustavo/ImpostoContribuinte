@@ -1,107 +1,107 @@
-package com.rockgustavo.web.controller;
+package com.rockgustavo.controller;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.rockgustavo.model.entities.Fisica;
-import com.rockgustavo.model.service.PessoaFisicaService;
+import com.rockgustavo.model.entities.Juridica;
+import com.rockgustavo.model.service.PessoaJuridicaService;
 
 @RestController
-@RequestMapping(value = "/pf")
-public class PessoaFisicaController {
-
+@RequestMapping(value = "/pj")
+public class PessoaJuridicaController {
 	@Autowired
-	private PessoaFisicaService service;
+	private PessoaJuridicaService service;
 	
 	@GetMapping("/cad")
-	public ModelAndView pessoafisica(Fisica fisica) {
+	public ModelAndView pessoajuridica(Juridica juridica) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("pessoaFisica/cadastro");
+		mv.setViewName("pessoaJuridica/cadastro");
 		return mv;
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(Fisica fisica, RedirectAttributes attr) {
-		if(service.insert(fisica) != null) {
+	public ModelAndView salvar(Juridica juridica, RedirectAttributes attr) {
+		if(service.insert(juridica) != null) {
 			attr.addFlashAttribute("success", "Cadastro efetuado com sucesso!");
 		}else {
 			attr.addFlashAttribute("fail", "Ocorreu um erro! cadastro não efetuado!");
 		}
-		ModelAndView mv = new ModelAndView("redirect:/pf/cad");
+		ModelAndView mv = new ModelAndView("redirect:/pj/cad");
 		return mv;
 	}
 	
 	@GetMapping("/listar")
-	public ModelAndView pessoafisicaListar() {
+	public ModelAndView pessoajuridicaListar() {
 		ModelAndView mv = new ModelAndView();
-		List<Fisica> list = service.findAll();
-		mv.addObject("listaPf", list);
-		mv.setViewName("pessoaFisica/lista");
+		List<Juridica> list = service.findAll();
+		mv.addObject("listaPj", list);
+		mv.setViewName("pessoaJuridica/lista");
 		return mv;
 	}
 	
 	@GetMapping(value = "/editar/{id}")
 	public ModelAndView preEditar(@PathVariable Integer id, RedirectAttributes attr) {
 		attr.addFlashAttribute("info", "Modo de edição!");
-		Fisica pessoa = service.findById(id);
-		ModelAndView mv = new ModelAndView("redirect:/pf/cad");
-		mv.addObject(pessoa);
+		Juridica juridica = service.findById(id);
+		ModelAndView mv = new ModelAndView("redirect:/pj/cad");
+		mv.addObject(juridica);
 		return mv;
 	}
 	
 	@PostMapping(value = "/editar")
-	public ModelAndView editar(Fisica fisica, RedirectAttributes attr) {
-		if(service.update(fisica) != null) {
+	public ModelAndView editar(Juridica juridica, RedirectAttributes attr) {
+		if(service.update(juridica) != null) {
 			attr.addFlashAttribute("success", "Cadastro atualizado com sucesso!");
 		}else {
 			attr.addFlashAttribute("fail", "Ocorreu um erro! cadastro não atualizado!");
 		}
-		return new ModelAndView("redirect:/pf/listar");
+		return new ModelAndView("redirect:/pj/listar");
 	}
 	
 	@GetMapping(value = "/delete/{id}")
 	public ModelAndView deletar(@PathVariable Integer id, RedirectAttributes attr) {
 		service.delete(id);
 		attr.addFlashAttribute("success", "Exclusão realizada com sucesso!");
-		return new ModelAndView("redirect:/pf/listar");
+		return new ModelAndView("redirect:/pj/listar");
 	}
 	
-	@ModelAttribute("pessoasF")
-	public List<Fisica> listarPf() {
-		List<Fisica> list = service.findAll();
+	@ModelAttribute("pessoasJ")
+	public List<Juridica> listarPj() {
+		List<Juridica> list = service.findAll();
 		return list;
 	}
+
 	
 	
 	
+	
+
 
 	@GetMapping
-	public ResponseEntity<List<Fisica>> findAll() {
-		List<Fisica> list = service.findAll();
-		return ResponseEntity.ok().body(list);
-
+	public ModelAndView findAll() {
+		ModelAndView mv = new ModelAndView();
+		List<Juridica> listPessoas = service.findAll();
+		mv.addObject("listPessoas", listPessoas);
+		mv.setViewName("pj");
+		return mv;
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Fisica> findById(@PathVariable Integer id) {
-		Fisica pessoa = service.findById(id);
+	public ResponseEntity<Juridica> findById(@PathVariable Integer id) {
+		Juridica pessoa = service.findById(id);
+
 		return ResponseEntity.ok().body(pessoa);
 
 	}
@@ -121,23 +121,28 @@ public class PessoaFisicaController {
 
 	}
 	
-	@PostMapping
-	public ResponseEntity<Fisica> insert(@RequestBody Fisica obj) {
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
+	@PostMapping("/inserirpj")
+	public ModelAndView insert(Juridica juridica) {
+		ModelAndView mv = new ModelAndView();
+		service.insert(juridica);
+		mv.setViewName("pj");
+		return mv;
 	}
 	
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Fisica> update(@PathVariable Integer id, @RequestBody Fisica obj) {
-		obj = service.update(id, obj);
-		return ResponseEntity.ok().body(obj);
+	@PostMapping("/atualizarpj")
+	public ModelAndView update(Integer id, Juridica juridica) {
+		ModelAndView mv = new ModelAndView();
+		service.update(id, juridica);
+		mv.setViewName("pj");
+		return mv;
 	}
 	
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Fisica> delete(@PathVariable Integer id) {
+	@PostMapping("/deletarpj")
+	public ModelAndView delete(Integer id) {
+		ModelAndView mv = new ModelAndView();
 		service.delete(id);
-		return ResponseEntity.noContent().build();
+		mv.setViewName("pj");
+		return mv;
 	}
 
 }

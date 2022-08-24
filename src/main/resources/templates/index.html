@@ -9,6 +9,8 @@
 <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
 	rel="stylesheet" />
+	
+	<link rel="icon" href="/img/favicon.png" />
 </head>
 <body>
 	<figure class="fig">
@@ -16,6 +18,10 @@
 	</figure>
 
 	<div id="login">
+	
+			<div th:replace="fragments/alert">
+			</div>
+	
 		<form method="POST" action="/logar">
 			<div class="mb-3">
 				<label class="form-label">Login</label> <input name="login"

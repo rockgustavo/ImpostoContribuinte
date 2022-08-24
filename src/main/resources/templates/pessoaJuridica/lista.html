@@ -13,11 +13,11 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Lista PF cadastradas</span></li>
+						<span>Lista PJ cadastradas</span></li>
 				</ul>
-				<a class="btn btn-primary btn-md" href="/pf/cad"
+				<a class="btn btn-primary btn-md" href="/pj/cad"
 					role="button"> <span class="oi oi-plus" title="Cadastro"
-					aria-hidden="true"></span> <span>Nova Pessoa Física</span>
+					aria-hidden="true"></span> <span>Nova Pessoa Jurídica</span>
 				</a>
 			</div>
 		</nav>
@@ -33,25 +33,25 @@
 							<th>ID</th>
 							<th>Nome</th>
 							<th>Renda Anual</th>
-							<th>Gastos com Saude</th>
+							<th>Número de Funcionários</th>
 							<th>Imposto à pagar</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="d : ${listaPf}">
+						<tr th:each="d : ${listaPj}">
 							<td th:text="${d.id}">ID</td>
 							<td th:text="${d.nome}">Nome</td>
 							<td class="dinheiro" th:text="${d.rendaAnual}">Renda Anual</td>
-							<td class="dinheiro" th:text="${d.gastosComSaude}">Gastos com Saude</td>
-							<td class="dinheiro" th:text="${d.getImposto}">Imposto à pagar</td>
+							<td th:text="${d.numFuncionarios}">Número de Funcionários</td>
+							<td th:text="${d.getImposto}">Imposto à pagar</td>
 
 							<td colspan="2">
 							<a class="btn btn-info btn-sm"
-								th:href="@{/pf/editar/{id}  (id=${d.id}) }" role="button"> <span
+								th:href="@{/pj/editar/{id}  (id=${d.id}) }" role="button"> <span
 									class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 							</a>
-							<button th:id="${'btn_pf/delete/' + d.id}"
+							<button th:id="${'btn_pj/delete/' + d.id}"
 								type="button" class="btn btn-danger btn-sm" 
 								data-toggle="modal" data-target="#myModal">
 								<span class="oi oi-circle-x" title="Exclusão desabilitada"

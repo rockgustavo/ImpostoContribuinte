@@ -20,11 +20,11 @@ public class Juridica extends Pessoa {
 	}
 
 	@Override
-	Double calculoImposto() {
+	String calculoImposto() {
 		if (getNumFuncionarios() > 10) {
-			return (getRendaAnual() * 0.14);
+			return String.format("R$ %,.2f", getRendaAnual() * 0.14);
 		} else {
-			return (getRendaAnual() * 0.16);
+			return String.format("R$ %,.2f", getRendaAnual() * 0.16);
 		}
 	}
 

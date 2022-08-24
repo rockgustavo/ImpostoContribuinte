@@ -16,9 +16,10 @@ public abstract class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+
 	private Double rendaAnual;
 
-	abstract Double calculoImposto();
+	abstract String calculoImposto();
 
 	public Pessoa() {
 
@@ -54,14 +55,14 @@ public abstract class Pessoa implements Serializable {
 		this.rendaAnual = rendaAnual;
 	}
 	
-	public Double getImposto() {
+	public String getImposto() {
 		return calculoImposto();
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("(ID: %d) Nome: %s - Imposto à Pagar: R$ %.2f",  this.getId(), this.getNome(),
+		sb.append(String.format("(ID: %d) Nome: %s - Imposto à Pagar: R$ %s",  this.getId(), this.getNome(),
 				calculoImposto()));
 		return sb.toString();
 	}

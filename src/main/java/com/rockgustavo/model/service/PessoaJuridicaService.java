@@ -31,6 +31,11 @@ public class PessoaJuridicaService {
 
 	}
 	
+	public Juridica update(Juridica obj) {
+		return pj.save(obj);
+
+	}
+	
 	public void delete(Integer id) {
 		pj.deleteById(id);
 	}
