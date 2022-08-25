@@ -1,10 +1,10 @@
 # Projeto Imposto Contribuinte
 Um projeto para expor tecnologias e modelagem de dados
 
-### Modelagem de dados - Diagrama de Classes
+### Diagrama de Classes
 ![Modelo](src/main/resources/static/img/Modelo.png)
 
-Os entidades são de pessoa física e pessoa jurídica:
+As entidades são de pessoa física e pessoa jurídica:
 
 A regra aplicada de forma simplificada foi que:
 
