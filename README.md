@@ -21,7 +21,7 @@ Pessoa Jurídica: pagam 16% de impostos. Se possuir mais de 10 funcionários pag
 * Orientado à Objetos
 * Spring Boot
 * JPA - Hibernate
-* PostGreeSQL
+* PostgreSQL
 * BootStrap
 * HTML5
 * CSS3
