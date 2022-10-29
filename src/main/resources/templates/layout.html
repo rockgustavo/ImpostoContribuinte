@@ -48,15 +48,8 @@
 	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>       
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 	
 	<script type="text/javascript">
-		$('.telefone').mask('(00) 0 0000-0000');
-		$('.dinheiro').mask('000.000.000.000.000.0', {reverse: true});
-		
 		var url = '';
 		
 		$('button[id*="btn_"]').click(function() {
@@ -76,6 +69,17 @@
 		        $(".sidebar").toggleClass("sidebar-open");
 		    })
 		});
+
+		
+		;(function converteValor(){
+			document.querySelectorAll('.dinheiro').forEach(vlr => {
+				vlr.textContent = "R$ " + (parseFloat(vlr.textContent).toFixed(2)).replace(".", ",");
+			})
+			
+//			let valor = document.getElementById('valor').textContent;
+//			let vlr = "R$ " + (parseFloat(valor).toFixed(2)).replace(".", ",");
+//			document.getElementById('valor').textContent = vlr;
+		})()
 
 	</script>
 </body>
