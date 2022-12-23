@@ -25,6 +25,3 @@ Pessoa Jurídica: pagam 16% de impostos. Se possuir mais de 10 funcionários pag
 * BootStrap
 * HTML5
 * CSS3
-
-### FrontEnd
-[Link da aplicação](https://imposto-contribuinte.herokuapp.com/) 
